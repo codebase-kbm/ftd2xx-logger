@@ -6,8 +6,7 @@ set(CMAKE_C_STANDARD 17)
 set(CMAKE_CXX_STANDARD 17)
 
 add_library(ftd2xx SHARED
-    src/dllmain.cpp
-    exports/ftd2xx.def
+    src/
 )
 
 target_include_directories(ftd2xx PRIVATE
