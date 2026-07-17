@@ -1,0 +1,20 @@
+{
+  "version": 6,
+
+  "configurePresets": [
+    {
+      "name": "windows-x86-debug",
+      "generator": "Visual Studio 18 2026",
+      "architecture": "Win32",
+      "binaryDir": "${sourceDir}/build/${presetName}"
+    }
+  ],
+
+  "buildPresets": [
+    {
+      "name": "windows-x86-debug",
+      "configurePreset": "windows-x86-debug",
+      "configuration": "Debug"
+    }
+  ]
+}

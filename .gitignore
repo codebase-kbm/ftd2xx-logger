@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual Environments
+.venv/
+venv/
+env/
+
+# VS Code
+.vscode/
+
+# Visual Studio
+.vs/
+
+# Generated files
+generated/
+
+# CMake
+build/
+build*/
+CMakeCache.txt
+CMakeFiles/
+
+# Temporary files
+*.log
+*.tmp
+*.lnk

@@ -1,0 +1,30 @@
+# ftd2xx-logger
+
+## Overview
+
+...
+
+## Requirements
+
+- Visual Studio Build Tools
+- Python 3.x
+
+## Project Structure
+
+definitions/
+generated/
+renderer/
+tools/
+src/
+
+## Usage
+
+python tools/generate.py
+
+## Build
+
+...
+
+## Status
+
+...
