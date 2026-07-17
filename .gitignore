@@ -27,3 +27,4 @@ CMakeFiles/
 *.log
 *.tmp
 *.lnk
+*.code-workspace
