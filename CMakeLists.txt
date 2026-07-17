@@ -13,7 +13,7 @@ add_library(ftd2xx SHARED
 )
 
 target_include_directories(ftd2xx PRIVATE
-    src
+    src/
     generated/ftd2xx
     definitions/ftd2xx
 )

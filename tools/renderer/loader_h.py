@@ -20,6 +20,8 @@ def render(module: Module, outdir: Path) -> None:
 
     lines.append("extern HMODULE g_OriginalDll;")
     lines.append("")
+    lines.append("bool LoadOriginalDll();")
+    lines.append("void UnloadOriginalDll();")
 
     for fn in module.functions:
         lines.append(cpp_typedef(fn))
@@ -29,9 +31,6 @@ def render(module: Module, outdir: Path) -> None:
     for fn in module.functions:
         lines.append(cpp_extern(fn))
 
-    lines.append("")
-    lines.append("bool LoadOriginalDLL();")
-    lines.append("void UnloadOriginalDLL();")
 
     filename.write_text(
         "\n".join(lines) + "\n",

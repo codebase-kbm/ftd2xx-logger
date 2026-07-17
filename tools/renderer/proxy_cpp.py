@@ -5,7 +5,7 @@ def render(module, output: Path):
 
     with open(output / "proxy.cpp", "w", encoding="utf-8") as f:
 
-        f.write('#include "loader.h"\n\n')
+        f.write('#include "loader.h"\n#include "logger.h"\n\n')
 
         for fn in module.functions:
             render_function(f, fn)
@@ -24,7 +24,7 @@ def render_function(f, fn):
     f.write("{\n")
 
     call = ", ".join(a.name for a in fn.arguments)
-
+    f.write(f'    Log("{fn.name}");\n')
     if fn.return_type == "void":
         f.write(f"    p{fn.name}({call});\n")
     else:
