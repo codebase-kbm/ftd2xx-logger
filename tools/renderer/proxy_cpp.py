@@ -24,10 +24,14 @@ def render_function(f, fn):
     f.write("{\n")
 
     call = ", ".join(a.name for a in fn.arguments)
-    f.write(f'    Log("{fn.name}");\n')
+    f.write(f'    LogEnter("{fn.name}");\n')
+
     if fn.return_type == "void":
         f.write(f"    p{fn.name}({call});\n")
+        f.write(f'    LogExit("{fn.name}", 0);\n')
     else:
-        f.write(f"    return p{fn.name}({call});\n")
+        f.write(f"    auto result = p{fn.name}({call});\n")
+        f.write(f'    LogExit("{fn.name}", result);\n')
+        f.write("    return result;\n")
 
-    f.write("}\n\n")
+        f.write("}\n\n")

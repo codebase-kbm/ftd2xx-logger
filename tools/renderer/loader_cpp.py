@@ -14,14 +14,11 @@ def render(module, output: Path):
         f.write("\n")
         f.write("bool LoadOriginalDll()\n")
         f.write("{\n")
-        f.write('    Log("LoadOriginalDll called");\n')
         f.write('    g_OriginalDll = LoadLibraryW(L"ftd2xx1.dll");\n')
         f.write("    if (!g_OriginalDll)\n")
         f.write("    {\n")
-        f.write('        Log("LoadLibrary failed");\n')
         f.write("        return false;\n")
         f.write("}\n")
-        f.write('Log("Original DLL loaded");\n')
         
         for fn in module.functions:
             f.write(

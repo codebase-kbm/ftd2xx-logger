@@ -5,6 +5,10 @@
 #include <filesystem>
 #include <fstream>
 #include <string>
+#include <chrono>
+#include <iomanip>
+#include <sstream>
+#include <windows.h>
 
 namespace fs = std::filesystem;
 
@@ -30,7 +34,7 @@ static std::string GetLogPath()
     return (logDir / "ftd2xx-proxy.log").string();
 }
 
-
+/*
 void Log(const char* text)
 {
     OutputDebugStringA(text);
@@ -52,4 +56,63 @@ void Log(const char* text)
 
     file << text << "\n";
     file.flush();
+}
+*/
+
+static std::string Timestamp()
+{
+    auto now = std::chrono::system_clock::now();
+    auto time = std::chrono::system_clock::to_time_t(now);
+
+    std::tm tm{};
+    localtime_s(&tm, &time);
+
+    std::ostringstream ss;
+
+    ss << std::put_time(&tm, "%Y-%m-%d %H:%M:%S");
+
+    return ss.str();
+}
+
+
+void WriteLog(const std::string& text)
+{
+    OutputDebugStringA(text.c_str());
+    static std::string logFile = GetLogPath();
+
+    std::ofstream file(
+        logFile,
+        std::ios::app
+    );
+
+    if (file)
+    {
+        file << text << "\n";
+        file.flush();
+    }
+}
+
+
+void LogEnter(const char* function)
+{
+    std::ostringstream ss;
+
+    ss << "["
+       << Timestamp()
+       << "] >> "
+       << function;
+
+    WriteLog(ss.str());
+}
+
+void LogExit(const char* function)
+{
+    std::ostringstream ss;
+
+    ss << "["
+       << Timestamp()
+       << "] << "
+       << function;
+
+    WriteLog(ss.str());
 }
